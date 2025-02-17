@@ -48,16 +48,16 @@ As such, make sure to orient the switch to match 'on' to face the same direction
 
 ### Overview
 
-The four addresses used correspond to different registers on the CH376 and board. For example, if given base address of $FF86:
+The cartridge uses two ports, the base address and the base address+1. The two addresses used correspond to different registers on the CH376 and board. For example, if given base address of $FF86:
 
   * $FF86 Data Register (Read and Write)
   * $FF87 Command Register (Write) and Flag Register (Read)
 
-Read the [CH376 Datasheet 1](datasheets/CH376DS1.pdf?raw=true) and [CH376 Datasheet 2](datasheets/CH376DS2.pdf?raw=true) for how to use the chip.
+Read the [CH376 Datasheet 1](datasheets/CH376DS1.PDF?raw=true) and [CH376 Datasheet 2](datasheets/CH376DS2.PDF?raw=true) for how to use the chip.
 
 The CH376 chip has built-in commands to access USB mass storage devices both at the block level and file level. The CH376 also allows for control transfers (used to configure devices), interrupt transfers (used for keyboards, mice, game controllers, etc), and bulk storage transfers (used for mass storage such as pendrives). It does not support isochronous transfers (used for streaming data), so it will not work on modern webcams.
 
-Note that the CH376 can only connect directly to a single USB device. That device can be a USB Hub, but this means 
+Note that the CH376 can only connect directly to a single USB device. That device can be a USB Hub, but this means driver software must configure the hub to allow communication to other devices through it. Such a driver can be found in the Software directory.
 
 ### Interrupts
 
@@ -78,7 +78,7 @@ See the routines in the Software directory for examples.
 
 ### ROM Socket
 
-A socket for a ROM is also included in the board design. This is entirely optional, as many users today will instead choose to use another boot device, such as disk, SDC, or DriveWire. However, one can add a ROM loaded with a bootloader, perhaps to boot Nitros9 directly off a USB drive or patching BASIC for USB drives and keyboards.
+A socket for a ROM is also included in the board design. This is entirely optional, as many users today will instead choose to use another boot device, such as disk, SDC, or DriveWire. However, one can add a ROM loaded with a bootloader, perhaps to boot NitrOS-9 directly off a USB drive (see the NitrOS-9 section below) or patching BASIC for USB drives and keyboards.
 
 The ROM socket is wired for a 27128 EPROM. As the 27128 provides 16k of storage, the board presents this as 2 different banks of 8k each, selected via jumper J1. As such, when writing the EPROM, combine the images with each image aligned to an 8k boundary (eg, at 0 and 8k). If using a ROM IC other than the 27128, one will need to adjust the board design to match the chosen IC. Some other ROM ICs are pin-compatible and will work fine with the existing design.
 
@@ -92,10 +92,14 @@ If one never plans on using the ROM, one can eliminate components J1, J2, U7, U5
 
 ## More Info
 
+### NitrOS-9
+
+[NitrOS-9](https://github.com/nitros9project/nitros9) is a community maintained open source operating system for the Color Computer based on Microware's OS9. Several modules have been written for NitrOS-9 providing a USB Manager and drivers for various USB devices (such as mass storage devices, keyboards, and mice). Additionally, a boot module is available that boots NitrOS-9 directly off a pen drive connected to this cartridge when written to a ROM in the ROM socket.
+
 ### Links
 
-* [CH376 Datasheet 1](datasheets/CH376DS1.pdf?raw=true)
-* [CH376 Datasheet 2](datasheets/CH376DS2.pdf?raw=true)
+* [CH376 Datasheet 1](datasheets/CH376DS1.PDF?raw=true)
+* [CH376 Datasheet 2](datasheets/CH376DS2.PDF?raw=true)
 * [USB 2.0 Specification](https://www.usb.org/document-library/usb-20-specification) Useful for various control transfer protocols
 * [USB HID Specification](https://www.usb.org/sites/default/files/documents/hid1_11.pdf) Useful Keyboard and Mouse boot protocols
 * [USB Mass Storage Specification](https://www.usb.org/sites/default/files/Mass_Storage_Specification_Overview_v1.4_2-19-2010.pdf)
