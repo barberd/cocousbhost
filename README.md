@@ -2,7 +2,7 @@
 
 ## Description
 
-This board is a cartridge for the Tandy Radio Shack TRS-80 Color Computer (CoCo), an 8 bit computer produced between 1980 and 1991. It provides an USB 2.0 Host controller, the CH376S, to the CoCo. This allows one to use USB devices with the Color Computer given software drivers for the device.
+This board is a cartridge for the Tandy Radio Shack TRS-80 Color Computer (CoCo), an 8 bit computer produced between 1980 and 1991. It provides an USB 2.0 Host controller, the CH376S, to the CoCo. This allows one to use USB devices with the Color Computer given software drivers for the device. See "Using the Board" below.
 
 ![Front View](images/cocousbpak.png?raw=true)
 
@@ -37,6 +37,23 @@ In 2022 I developed the [CoCo USB Serial Pak](https://github.com/barberd/cocousb
 After that project, I wanted to produce a cartridge that did provide that USB host ability for the CoCo. I also didn't want to just interface to another computer (such as a Raspberry Pi Pico or ESP) that does the real USB work; I wanted the CoCo to control the USB bus and communicate with devices directly, recognizing I'd have to write software drivers from scratch. This is the result.
 
 ## Using the Board
+
+Please do not expect to use this board as a drop-in to replace the Color Computer's keyboard, joysticks, storage mediums, or other hardware and expect all the original software to work immediately and transparently.
+
+This board provides a USB bus for the Color Computer. Use of that bus, and any devices found on that bus, requires software drivers. Patches for the original DECB routines for POLCAT (read a character from the keyboard) and JOYIN (sample the joysticks) to use USB keyboards and mice are available in the Software directory. These DECB patches work with most Basic programs and any machine language software coded to use DECB's built-in routines.
+
+However, the majority of original applications and games are hard-coded to access the keyboard, joystick, and serial devices directly through the Peripheral Interface Adapter (PIA) chips of the CoCo and not through DECB's provided routines. If one desires, one can patch such software to instead leverage USB devices through this cartridge, but each software package is a custom effort. Routines to get started with this are available in the Software directory.
+
+The exception for needing to patch software is when software is running under an operating system (where hardware is abstracted away through an API) and that operating system has USB drivers; the operating system's programming interface in combination with drivers takes care of the hardware interfacing. See the "NitrOS-9" section below.
+
+To digress from this cartridge slightly: If one wants to use USB devices transparently with old software without patching, one will instead need a hardware solution that plugs directly into the original hardware's interface. This is normally done with a second computer (such as a Arduino, ESP, or Raspberry Pi Pico) doing the USB communication, converting the state information, and then presenting it via the legacy interface (such as plugging into the keyboard matrix ribbon connector plug or the joystick port). See [USB to CoCo Keyboard Adapter](https://thebreakkey.com/projects.html), [PiKey](http://www.pikey.tech/), and [CocoJoyStickAdapter](https://github.com/malfunct/CocoJoystickAdapter) for examples. The [CoCoSDC](http://cocosdc.blogspot.com/) uses a similar technique (though for an SD card interface, not a USB device). All these solutions are brilliant; they provide drop-in solutions requiring no change to legacy software.
+
+The intent of this cartridge is different: unlike these hardware-interfacing solutions, this USB cartridge provides a full USB bus to the CoCo. This means by writing new drivers, one can use any USB device, including those not originally available on the CoCo. This could include scanners, printers, webcams, network adapters, bluetooth adapters, light guns, sound adapters, etc; almost any USB device can be made to work. This provides diverse flexibility for the CoCo developer to write new software leveraging new hardware; homebrew is still alive and well for the CoCo!
+
+Two limitations to be aware: 
+
+  * The CH376 chip does not support isochronous USB transfers (this means some of the streaming protocols often used on newer webcams won't work, though many webcams still support the interrupt and bulk transfer methods as well) 
+  * The CoCo itself might be too slow for some USB devices - its bus speed can only transfer data so quickly.
 
 ### Configuration
 
@@ -78,7 +95,7 @@ See the routines in the Software directory for examples.
 
 ### ROM Socket
 
-A socket for a ROM is also included in the board design. This is entirely optional, as many users today will instead choose to use another boot device, such as disk, SDC, or DriveWire. However, one can add a ROM loaded with a bootloader, perhaps to boot NitrOS-9 directly off a USB drive (see the NitrOS-9 section below) or patching BASIC for USB drives and keyboards.
+A socket for a ROM is also included in the board design. This is entirely optional, as many users today will instead choose to use another boot device, such as disk, SDC, or DriveWire. However, one can add a ROM loaded with a bootloader, perhaps to boot NitrOS-9 directly off a USB drive (see the "NitrOS-9" section below) or patching BASIC for USB drives and keyboards.
 
 The ROM socket is wired for a 27128 EPROM. As the 27128 provides 16k of storage, the board presents this as 2 different banks of 8k each, selected via jumper J1. As such, when writing the EPROM, combine the images with each image aligned to an 8k boundary (eg, at 0 and 8k). If using a ROM IC other than the 27128, one will need to adjust the board design to match the chosen IC. Some other ROM ICs are pin-compatible and will work fine with the existing design.
 
@@ -111,7 +128,7 @@ If one never plans on using the ROM, one can eliminate components J1, J2, U7, U5
 
 The CH375 is a very similar chip that provides the same USB functionality of the CH376. The CH376 also costs slightly more and its additional features (interfacing with an SD card controller) are not used on this cartridge. Therefore, one might be tempted to use a CH375 instead. 
 
-In the author's experience, the CH375 has an undocumented bug that drops a byte seemingly at random, leading to corrupted data and trouble keeping software and hardware in sync. This behavior was consistent across four chips the author tested, and seems consistent with anecdotal user experiences found online around other solutions using the ch375, such as ISA cards designed for early PCs.
+In the author's experience, the CH375 has an undocumented bug that drops a byte seemingly at random, leading to corrupted data and trouble keeping software and hardware in sync. This behavior was consistent across four chips the author tested, and seems consistent with anecdotal user experiences found online around other solutions using the CH375, such as ISA cards designed for early PCs.
 
 If one does choose to use the CH375B instead, either add a bodge wire or modify the design before manufacturing to connect pin 23 to ground, and use $2B (WR_USB_DATA7) for the write command instead of $2C (WR_HOST_DATA).
 
