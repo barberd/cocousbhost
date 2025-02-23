@@ -118,7 +118,8 @@ If one never plans on using the ROM, one can eliminate components J1, J2, U7, U5
 * [CH376 Datasheet 1](datasheets/CH376DS1.PDF?raw=true)
 * [CH376 Datasheet 2](datasheets/CH376DS2.PDF?raw=true)
 * [USB 2.0 Specification](https://www.usb.org/document-library/usb-20-specification) Useful for various control transfer protocols
-* [USB HID Specification](https://www.usb.org/sites/default/files/documents/hid1_11.pdf) Useful Keyboard and Mouse boot protocols
+* [USB HID Class Definition](https://www.usb.org/sites/default/files/documents/hid1_11.pdf) Useful Keyboard and Mouse boot protocols
+* [USB Printer Device Class Definition](https://www.usb.org/sites/default/files/usbprint11a021811.pdf) 
 * [USB Mass Storage Specification](https://www.usb.org/sites/default/files/Mass_Storage_Specification_Overview_v1.4_2-19-2010.pdf)
 * [USB Mass Storage Bulk-Only Transport](https://www.usb.org/sites/default/files/usbmassbulk_10.pdf)
 * [SCSI Command Reference (from Seagate)](https://www.seagate.com/files/staticfiles/support/docs/manual/Interface%20manuals/100293068j.pdf) USB Mass storage devices use encapsulated SCSI
