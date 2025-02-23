@@ -18,7 +18,7 @@ If you've done soldering but are new to surface mounting chips: pin the chip int
 
 ### How to order for fabrication
 
-Download [kicad/cocousbhost-fabrication.zip](kicad/cocousbhost-fabrication.zip), then upload it to one's PCB manufacturer when asked to provide Gerber files. Usually this is found under a 'Quote' option on the website. Search "pcb manufacturing" on any major search engine to get several manufacturers. NextPCB and PCBWay are two well-known ones.
+Download [kicad/cocousbhost-fabrication.zip](kicad/cocousbhost-fabrication.zip?raw=true), then upload it to one's PCB manufacturer when asked to provide Gerber files. Usually this is found under a 'Quote' option on the website. Search "pcb manufacturing" on any major search engine to get several manufacturers. NextPCB and PCBWay are two well-known ones.
 
 Some may have ordered boards and have extra available. Reach out to don &#x40; dgb3.net to explore this.
 
