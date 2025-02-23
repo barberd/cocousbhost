@@ -42,7 +42,7 @@ Please do not expect to use this board as a drop-in to replace the Color Compute
 
 This board provides a USB bus for the Color Computer. Use of that bus, and any devices found on that bus, requires software drivers. Patches for the original DECB routines for POLCAT (read a character from the keyboard) to use a USB keyboard is available in the Software directory. These DECB patches work with most Basic programs and any machine language software coded to use DECB's built-in routines.
 
-Conceptually, a similar patch for DECB's JOYIN (read from the Joysticks) routine can be developed, but as joysticks do not have a standard report format (unlike keyboard and mice Boot protocol), each joystick model will need a custom driver developed. But this is possible as well for Basic and some machine language software that uses the JOYIN routine.
+Conceptually, a similar patch for DECB's JOYIN (read from the Joysticks) routine can be developed, but as joysticks do not have a standard report format (unlike keyboard and mice Boot protocol), each joystick model will need a custom driver developed. But if developed, this would work for Basic programs and those machine language software packages that use the JOYIN routine.
 
 However, the majority of original applications and games are hard-coded to access the keyboard, joystick, and serial devices directly through the Peripheral Interface Adapter (PIA) chips of the CoCo and not through DECB's provided routines. If one desires, one can patch such software to instead leverage USB devices through this cartridge, but each software package is a custom effort. One can leverage the routines and drivers in the Software directory as a starting point.
 
