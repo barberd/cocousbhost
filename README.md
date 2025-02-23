@@ -1,12 +1,12 @@
-# CoCo USB Pak
+# CoCo USB Host
 
 ## Description
 
 This board is a cartridge for the Tandy Radio Shack TRS-80 Color Computer (CoCo), an 8 bit computer produced between 1980 and 1991. It provides a USB 2.0 Host controller, the CH376S, to the CoCo. This allows one to use USB devices with the Color Computer given software drivers for the device. See "Using the Board" below.
 
-![Front View](images/cocousbpak.png?raw=true)
+![Front View](images/cocousbhost.png?raw=true)
 
-Schematic is available [here](kicad/cocousbpak.pdf).
+Schematic is available [here](kicad/cocousbhost.pdf).
 
 Assembly routines for using the cartridge in your own software can be found in the [Software](Software) directory. This includes drivers for USB hubs, keyboards, mice, and mass storage devices (such as pendrives). Additionally, a software patch for the Color Computer 3's BASIC to use a USB keyboard for input can be found in this directory.
 
@@ -18,15 +18,15 @@ If you've done soldering but are new to surface mounting chips: pin the chip int
 
 ### How to order for fabrication
 
-Download [kicad/cocousbpak-fabrication.zip](kicad/cocousbpak-fabrication.zip), then upload it to one's PCB manufacturer when asked to provide Gerber files. Usually this is found under a 'Quote' option on the website. Search "pcb manufacturing" on any major search engine to get several manufacturers. NextPCB and PCBWay are two well-known ones.
+Download [kicad/cocousbhost-fabrication.zip](kicad/cocousbhost-fabrication.zip), then upload it to one's PCB manufacturer when asked to provide Gerber files. Usually this is found under a 'Quote' option on the website. Search "pcb manufacturing" on any major search engine to get several manufacturers. NextPCB and PCBWay are two well-known ones.
 
 Some may have ordered boards and have extra available. Reach out to don &#x40; dgb3.net to explore this.
 
-Use the [Bill of Materials](kicad/cocousbpak.csv) to source the components from electronic supply houses such as Mouser, Jameco, or Digi-Key.
+Use the [Bill of Materials](kicad/cocousbhost.csv) to source the components from electronic supply houses such as Mouser, Jameco, or Digi-Key.
 
 ## Source and License
 
-Design maintained at [https://github.com/barberd/cocousbpak](https://github.com/barberd/cocousbpak). [Kicad](https://www.kicad.org/) and [Freerouting](https://github.com/freerouting/freerouting/) were used to design the board.
+Design maintained at [https://github.com/barberd/cocousbhost](https://github.com/barberd/cocousbhost). [Kicad](https://www.kicad.org/) and [Freerouting](https://github.com/freerouting/freerouting/) were used to design the board.
 
 The design is copyright 2025 by Don Barber. The design is open source, distributed via the GNU GPL version 3 license. Please see the COPYING file for details.
 

@@ -5,9 +5,9 @@
 	(uuid "461d176e-f9f6-4c50-8a25-d82b6fbb9b64")
 	(paper "A4")
 	(title_block
-		(title "CoCo USB Pak")
+		(title "CoCo USB Host")
 		(company "Don Barber")
-		(comment 1 "https://github.com/barberd/cocousbpak")
+		(comment 1 "https://github.com/barberd/cocousbhost")
 		(comment 2 "Licensed GPL v3")
 	)
 	(lib_symbols

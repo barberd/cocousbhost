@@ -14243,7 +14243,7 @@
 			)
 		)
 	)
-	(gr_text "CocoUSB Pak for Color Computer v1.0\nCopyright 2025 Don Barber\nLicense GPLv3\nhttps://github.com/barberd/cocousbpak"
+	(gr_text "Coco USB Host for Color Computer v1.0\nCopyright 2025 Don Barber\nLicense GPLv3\nhttps://github.com/barberd/cocousbhost"
 		(at 67.945 47.625 0)
 		(layer "F.SilkS")
 		(uuid "df5d6e41-2633-40b9-99c5-a55c71fed2c4")
