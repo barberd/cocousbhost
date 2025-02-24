@@ -54,7 +54,7 @@ The intent of this cartridge is different: unlike these hardware-interfacing sol
 
 Two limitations to be aware: 
 
-  * The CH376 chip does not support isochronous USB transfers (this means some of the streaming protocols often used on newer webcams won't work, though many webcams still support the interrupt and bulk transfer methods as well) 
+  * The CH376 chip does not support isochronous USB transfers (this means some of the streaming protocols often used on sound adapters and newer webcams won't work, though many webcams still support the interrupt and bulk transfer methods as well) 
   * The CoCo itself might be too slow for some USB devices - its bus speed can only transfer data so quickly.
 
 ### Configuration
@@ -74,7 +74,7 @@ The cartridge uses two memory-mapped ports, the base address and the base addres
 
 Read the [CH376 Datasheet 1](datasheets/CH376DS1.PDF?raw=true) and [CH376 Datasheet 2](datasheets/CH376DS2.PDF?raw=true) for how to use the chip.
 
-The CH376 chip has built-in commands to access USB mass storage devices both at the block level and file level. The CH376 also allows for control transfers (used to configure devices), interrupt transfers (used for keyboards, mice, game controllers, etc), and bulk storage transfers (used for mass storage such as pendrives). It does not support isochronous transfers (used for streaming data), so it will not work with some modern webcam protocols.
+The CH376 chip has built-in commands to access USB mass storage devices both at the block level and file level. The CH376 also allows for control transfers (used to configure devices), interrupt transfers (used for keyboards, mice, game controllers, etc), and bulk storage transfers (used for mass storage such as pendrives). It does not support isochronous transfers (used for streaming data), so it will not work with some modern sound adapters and webcam protocols.
 
 Note that the CH376 can only connect directly to a single USB device. That device can be a USB Hub, but this means driver software must configure the hub to allow communication to other devices through it. Such a driver can be found in the Software directory. Its HIGHLY recommended to use a powered USB hub; otherwise the USB devices will draw power from the Color Computer or Multi-Pak interface.
 
